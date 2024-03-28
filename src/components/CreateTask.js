@@ -2,16 +2,28 @@ import { StyleSheet, View, TextInput, TouchableOpacity, Text } from "react-nativ
 import React from "react";
 import { colors } from "../constants/colors";
 
-const CreateTask = ({ task, setTask, createTask }) => {
-	return (
-		<View style={styles.view}>
-			<Text style={styles.title}>Nueva Tarea</Text>
-			<TextInput style={styles.txtInput} placeholder='Pasear al perro...' value={task} onChangeText={(e) => setTask(e)} />
-			<TouchableOpacity style={styles.btnCreate} onPress={createTask}>
-				<Text style={styles.txtCreate}> Crear Tarea </Text>
-			</TouchableOpacity>
-		</View>
-	);
+const CreateTask = ({ action, task, setTask, createTask, editTask }) => {
+	if (action === "create") {
+		return (
+			<View style={styles.view}>
+				<Text style={styles.title}>+ Nueva Tarea</Text>
+				<TextInput style={styles.txtInput} placeholder='Pasear al perro...' value={task} onChangeText={(e) => setTask(e)} />
+				<TouchableOpacity style={styles.btnCreate} onPress={createTask}>
+					<Text style={styles.txtCreate}> Crear Tarea </Text>
+				</TouchableOpacity>
+			</View>
+		);
+	} else if (action === "edit") {
+		return (
+			<View style={styles.view}>
+				<Text style={styles.title}>Editar Tarea</Text>
+				<TextInput style={styles.txtInput} placeholder='Pasear al perro...' value={task} onChangeText={(e) => setTask(e)} />
+				<TouchableOpacity style={styles.btnCreate} onPress={editTask}>
+					<Text style={styles.txtCreate}> Confirmar </Text>
+				</TouchableOpacity>
+			</View>
+		);
+	}
 };
 
 export default CreateTask;
